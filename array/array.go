@@ -28,8 +28,23 @@ func (a *ArrayList) GetSize() int64 {
 
 // [1, 2, 3, 4]
 func (a *ArrayList) InsertElement(index int64, data interface{}) {
-	//newArray := make([]interface{}, 0, a.ArraySize*2)
-	a.DataStore = append(a.DataStore[:index], data, a.DataStore[index+1:])
+	if a.ArraySize >= int64(cap(a.DataStore)) {
+		new := new(ArrayList)
+		new.DataStore = make([]interface{}, 0, a.ArraySize*2)
+		for i := a.ArraySize; i >= index; i-- {
+			a.DataStore[i+1] = a.DataStore[i]
+			if i == index {
+				a.DataStore[index] = data
+			}
+		}
+		//tmp := a.DataStore[index+1]
+		//new.DataStore = append(append(a.DataStore[:index], data), (a.DataStore[index+1:])...)
+		//a.DataStore = new.DataStore
+		//a.DataStore[index+1] = tmp
+		a.ArraySize++
+		return
+	}
+	a.DataStore = append(append(a.DataStore[:index], data), (a.DataStore[index+1:])...)
 	a.ArraySize++
 }
 

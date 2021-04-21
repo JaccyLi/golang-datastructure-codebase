@@ -43,23 +43,6 @@ func main_tree() {
 
 func main() {
 
-	slice1 := []string{"name", "age"}
-	slice2 := make([]string, len(slice1))
-	fmt.Println(len(slice2))
-	fmt.Println(cap(slice2))
-	P1(slice1, slice2)
+	fmt.Println("main")
 
-	fmt.Println("cpd: ", copy(slice2, slice1))
-
-	P1(slice1, slice2)
-
-}
-
-func P1(slice1, slice2 []string) {
-	fmt.Printf("b: %#v, %#v\n", slice1, slice2)
-	P2()
-}
-
-func P2() {
-	fmt.Println("deep print")
 }

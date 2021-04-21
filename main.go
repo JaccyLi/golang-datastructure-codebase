@@ -27,7 +27,7 @@ func main_array() {
 	fmt.Println(a.DataStore)
 }
 
-func main() {
+func main_tree() {
 	t := tree.Node{Key: 20}
 	fmt.Println(t)
 
@@ -39,4 +39,27 @@ func main() {
 	t.Insert(145)
 	fmt.Println(t.Right)
 	fmt.Println(t.Search(5))
+}
+
+func main() {
+
+	slice1 := []string{"name", "age"}
+	slice2 := make([]string, len(slice1))
+	fmt.Println(len(slice2))
+	fmt.Println(cap(slice2))
+	P1(slice1, slice2)
+
+	fmt.Println("cpd: ", copy(slice2, slice1))
+
+	P1(slice1, slice2)
+
+}
+
+func P1(slice1, slice2 []string) {
+	fmt.Printf("b: %#v, %#v\n", slice1, slice2)
+	P2()
+}
+
+func P2() {
+	fmt.Println("deep print")
 }

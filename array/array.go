@@ -1,6 +1,9 @@
 package array
 
-import "errors"
+import (
+	"errors"
+	"sync"
+)
 
 type Array interface {
 	Clear()
@@ -13,6 +16,7 @@ type Array interface {
 }
 
 type ArrayList struct {
+	mu        *sync.Mutex
 	ArraySize int64
 	DataStore []interface{}
 }
@@ -25,6 +29,9 @@ func NewArrayList() *ArrayList {
 }
 
 func (a *ArrayList) GetSize() int64 {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
 	return a.ArraySize
 }
 

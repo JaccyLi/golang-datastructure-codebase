@@ -5,6 +5,7 @@ import (
 
 	"suosuoli-golangds/array"
 	"suosuoli-golangds/tree"
+	"suosuoli-golangds/stack"
 )
 
 func main_array() {
@@ -43,6 +44,9 @@ func main_tree() {
 
 func main() {
 
-	fmt.Println("main")
+	s := stack.NewStack()
+	_:=s.Push("hello")
+	_:=s.Push("hi")
+	
 
 }

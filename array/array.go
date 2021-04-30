@@ -29,13 +29,12 @@ func NewArrayList() *ArrayList {
 }
 
 func (a *ArrayList) GetSize() int64 {
-	a.mu.Lock()
-	defer a.mu.Unlock()
-
 	return a.ArraySize
 }
 
 func (a *ArrayList) AppendElement(data interface{}) {
+	a.isFull()
+	a.DataStore = a.DataStore[:a.ArraySize+1]
 	a.DataStore = append(a.DataStore, data)
 	a.ArraySize++
 }

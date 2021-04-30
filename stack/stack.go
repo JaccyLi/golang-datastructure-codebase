@@ -14,7 +14,7 @@ type StackBehavior interface {
 
 type Stack struct {
 	Size      int64
-	Top interface{}
+	Top       interface{}
 	DataStore []interface{}
 }
 
@@ -25,7 +25,7 @@ func NewStack() *Stack {
 	return s
 }
 
-func (s *Stack)Push(s *Stack, data interface{}) error {
+func (s *Stack) Push(data interface{}) error {
 	if IsFull(s) {
 		return errors.New("stack overflow")
 	}
@@ -35,7 +35,7 @@ func (s *Stack)Push(s *Stack, data interface{}) error {
 }
 
 func Pop(s *Stack) error {
-	if IsEmpty() {
+	if IsEmpty(s) {
 		return errors.New("stack is empty")
 	}
 	s.DataStore = s.DataStore[:len(s.DataStore)-1]
@@ -49,4 +49,4 @@ func IsEmpty(s *Stack) bool {
 
 func IsFull(s *Stack) bool {
 	return s.Size == int64(cap(s.DataStore))
-} 
+}

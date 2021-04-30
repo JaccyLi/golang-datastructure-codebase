@@ -4,8 +4,9 @@ import (
 	"fmt"
 
 	"suosuoli-golangds/array"
+	"suosuoli-golangds/sort"
 	"suosuoli-golangds/tree"
-	"suosuoli-golangds/stack"
+	"suosuoli-golangds/utils"
 )
 
 func main_array() {
@@ -42,11 +43,10 @@ func main_tree() {
 	fmt.Println(t.Search(5))
 }
 
-func main() {
+func main_selectSort() {
 
-	s := stack.NewStack()
-	_:=s.Push("hello")
-	_:=s.Push("hi")
-	
+	arr := utils.GenSlice(10, 1000)
+	fmt.Printf("un: %#v\nsorted:%#v\n", arr, sort.SelectSortAssend(arr))
+	fmt.Printf("un: %#v\nsorted:%#v\n", arr, sort.SelectSortDescend(arr))
 
 }

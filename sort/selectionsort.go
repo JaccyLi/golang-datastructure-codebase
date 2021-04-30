@@ -1,6 +1,10 @@
 package sort
 
 // SelectSort
+// Selection sort is a sorting algorithm that selects the smallest element from an unsorted list in each iteration and places that element at the beginning of the unsorted list.
+/*
+https://www.programiz.com/dsa/selection-sort
+*/
 // assend: find minimum number, and put it at beginning of unsorted part
 func SelectSortAssend(unsort []int) []int {
 	for i := 0; i < len(unsort); i++ {

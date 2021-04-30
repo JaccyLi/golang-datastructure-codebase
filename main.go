@@ -9,6 +9,7 @@ import (
 	"suosuoli-golangds/utils"
 )
 
+// =================datastructure main==================== //
 func main_array() {
 	a := array.NewArrayList()
 	a.AppendElement(0)
@@ -43,10 +44,17 @@ func main_tree() {
 	fmt.Println(t.Search(5))
 }
 
+// =================datastructure main==================== //
+
+// =================algorithm main==================== //
 func main_selectSort() {
 
 	arr := utils.GenSlice(10, 1000)
 	fmt.Printf("un: %#v\nsorted:%#v\n", arr, sort.SelectSortAssend(arr))
 	fmt.Printf("un: %#v\nsorted:%#v\n", arr, sort.SelectSortDescend(arr))
+
+}
+
+func main() {
 
 }

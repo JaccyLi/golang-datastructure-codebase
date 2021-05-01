@@ -10,16 +10,23 @@ right otherwise, to the left. In the same way, other
 unsorted cards are taken and put at their right place.
 */
 
+// 3,4,2,1,4,6,8,3
+// 3   4,2,1,4,6,8,3
+// 3,4  2,1,4,6,8,3
+// 2,3,4 1,4,
+
 //func InsertionSort(unsort []int) []int {
-//	sorted := []int{unsort[0]}
 //	for i := 1; i < len(unsort); i++ {
-//		for j := 1; j < len(sorted); j++ {
-//			if unsort[i] > sorted[j] {
-//				sorted[j+1] = unsort[i]
-//			} else {
-//				sorted[j-1] = unsort[i]
+//		tmp := []int{unsort[i]}
+//		for j := i - 1; j > 0; j-- {
+//			if tmp[j] > unsort[i] {
+//
 //			}
+//
 //		}
+//
 //	}
-//	return sorted
+//
+//	return []int{}
 //}
+//

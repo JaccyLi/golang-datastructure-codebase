@@ -56,5 +56,6 @@ func main_selectSort() {
 }
 
 func main() {
-
+	arr := utils.GenSlice(10, 200)
+	fmt.Println(sort.InsertionSort(arr))
 }

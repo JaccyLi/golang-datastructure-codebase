@@ -26,7 +26,7 @@ func NewStack() *Stack {
 }
 
 func (s *Stack) Push(data interface{}) error {
-	if IsFull(s) {
+	if s.IsFull() {
 		return errors.New("stack overflow")
 	}
 	s.DataStore = append(s.DataStore, data)
@@ -34,8 +34,8 @@ func (s *Stack) Push(data interface{}) error {
 	return nil
 }
 
-func Pop(s *Stack) error {
-	if IsEmpty(s) {
+func (s *Stack) Pop() error {
+	if s.IsEmpty() {
 		return errors.New("stack is empty")
 	}
 	s.DataStore = s.DataStore[:len(s.DataStore)-1]
@@ -43,10 +43,18 @@ func Pop(s *Stack) error {
 	return nil
 }
 
-func IsEmpty(s *Stack) bool {
+func (s *Stack) IsEmpty() bool {
 	return s.Size == 0
 }
 
-func IsFull(s *Stack) bool {
+func (s *Stack) IsFull() bool {
 	return s.Size == int64(cap(s.DataStore))
+}
+
+func (s *Stack) Peek() (interface{}, error) {
+	if s.IsEmpty() {
+		return nil, errors.New("stack is empty")
+	}
+	rData := s.DataStore[len(s.DataStore)-1:]
+	return rData, nil
 }

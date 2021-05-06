@@ -4,7 +4,9 @@ import (
 	"fmt"
 
 	"suosuoli-golangds/array"
+	"suosuoli-golangds/queue"
 	"suosuoli-golangds/sort"
+	"suosuoli-golangds/stack"
 	"suosuoli-golangds/tree"
 	"suosuoli-golangds/utils"
 )
@@ -28,6 +30,28 @@ func main_array() {
 		fmt.Println(err)
 	}
 	fmt.Println(a.DataStore)
+}
+
+func main_stack() {
+	ns := stack.NewStack()
+	ns.Push(12)
+	ns.Push(13)
+	ns.Pop()
+	d, err := ns.Peek()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("data: ", d)
+}
+
+func main_queue() {
+	nq := queue.New()
+	for i := 0; i < 9; i++ {
+		nq.Enqueue(i)
+	}
+	fmt.Println("full: ", nq.IsFull())
+	fmt.Printf("%#v\n", nq)
+	fmt.Println("peek: ", nq.Peek())
 }
 
 func main_tree() {
@@ -55,7 +79,7 @@ func main_selectSort() {
 
 }
 
-func main() {
-	arr := utils.GenSlice(10, 200)
-	fmt.Println(sort.InsertionSort(arr))
+func main_tmp() {
+	//arr := utils.GenSlice(10, 200)
+	//fmt.Println(sort.InsertionSort(arr))
 }

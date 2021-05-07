@@ -1,45 +1,71 @@
 package queue
 
 type CircularQueueBehavior interface {
-	Enqueu(interface{})
-	Dequeu() interface{}
+	IsEmpty() bool
+	IsFull() bool
+	Enqueue(interface{}) bool
+	Dequeue() interface{}
 	Peek() interface{}
+	String() []interface{}
 }
 
 type CircularQueue struct {
-	Len       int
 	DataStore []interface{}
+	Capacity  int
+	HeadIdx   int
+	RearIdx   int
 }
 
-func NewCq(len int) *CircularQueue {
-	ncq := &CircularQueue{}
-	ncq.DataStore = make([]interface{}, 0, len)
-	ncq.Len = 0
-	return ncq
-}
-
-func (cq *CircularQueue) Enqueu(data interface{}) {
-	if !cq.IsFull() {
-		cq.DataStore = append(cq.DataStore, data)
-		cq.Len++
+func NewCQ(len int) *CircularQueue {
+	if len == 0 {
+		return nil
 	}
-}
-
-func (cq *CircularQueue) Dequeu() (re interface{}) {
-	if !cq.IsEmpty() {
-		re, cq.DataStore = cq.DataStore[0], cq.DataStore[1:]
+	return &CircularQueue{
+		DataStore: make([]interface{}, 0, len),
+		Capacity:  len,
+		HeadIdx:   0,
+		RearIdx:   0,
 	}
-	return
 }
 
 func (cq *CircularQueue) IsFull() bool {
-	return cq.Len+1 == cap(cq.DataStore)
+	if (cq.RearIdx+1)%cq.Capacity == cq.HeadIdx {
+		return true
+	}
+	return false
 }
 
 func (cq *CircularQueue) IsEmpty() bool {
-	return cq.Len == 0
+	if cq.RearIdx == cq.HeadIdx {
+		return true
+	}
+	return false
+}
+
+func (cq *CircularQueue) Enqueue(data interface{}) bool {
+	if cq.IsFull() {
+		return false
+	}
+	cq.DataStore[cq.RearIdx] = data
+	cq.RearIdx = (cq.RearIdx + 1) % cq.Capacity
+	return true
+}
+
+func (cq *CircularQueue) Dequeue() (re interface{}) {
+	if cq.IsEmpty() {
+		return false
+	}
+	re = cq.DataStore[cq.HeadIdx]
+	cq.HeadIdx = (cq.HeadIdx + 1) % cq.Capacity
+	return
 }
 
 func (cq *CircularQueue) Peek() interface{} {
-	return cq.DataStore[0]
+	return cq.DataStore[cq.HeadIdx]
+}
+
+
+func (cq *CircularQueue) String() []interface{} {
+
+	return nil
 }

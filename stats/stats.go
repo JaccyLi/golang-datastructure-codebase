@@ -9,8 +9,11 @@ import (
 	"github.com/go-echarts/statsview/viewer"
 )
 
+// StartStats is
 func StartStats() {
-	viewer.SetConfiguration(viewer.WithTheme(viewer.ThemeWesteros), viewer.WithAddr("localhost:8087"))
+	// Visit your browser at http://localhost:18066/debug/statsview
+	// Or debug as always via http://localhost:18066/debug/pprof, http://localhost:18066/debug/pprof/heap, ...
+	viewer.SetConfiguration(viewer.WithTheme(viewer.ThemeWesteros), viewer.WithAddr("localhost:18066"))
 	mgr := statsview.New()
 
 	// Start() runs a HTTP server at `localhost:18066` by default.
@@ -21,7 +24,7 @@ func StartStats() {
 
 	// busy working....
 	newarr := array.NewArrayList()
-	for i := 1; i < 400; i++ {
+	for i := 0; i < 400; i++ {
 		time.Sleep(time.Millisecond * 100)
 		newarr.AppendElement(20 + i)
 	}
